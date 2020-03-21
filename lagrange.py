@@ -1,33 +1,32 @@
 import numpy
 import matplotlib.pyplot as plt
 
-def lagrange( x, y, x_interp ):
+def lagrange(x, y, x_interp):
 
-    w = numpy.ones( x.shape )
-    for i in range( x.size ):
-        for k in range( x.size ):
+    w = numpy.ones(x.shape)
+    for i in range(x.size):
+        for k in range(x.size):
             if k != i:
-                w[ i ] = w[ i ] * ( x[ i ] - x[ k ] )
-    for i in range( x.size ):
-        w[ i ] = y[ i ] / w[ i ]
+                w[i] = w[i] * (x[i] - x[k])
+    for i in range(x.size):
+        w[i] = y[i]/w[i]
       
-    L = numpy.ones( x_interp.shape )
-    for i in range( x_interp.size ):
-        for k in range( x.size ):
-            L[ i ] = L[ i ] * ( x_interp[ i ] - x[ k ] )
+    L = numpy.ones(x_interp.shape)
+    for i in range(x_interp.size):
+        for k in range(x.size):
+            L[i] = L[i] * (x_interp[i] - x[k])
 
-    s = numpy.zeros( x_interp.shape )
-    for i in range( x_interp.size ):
-        for k in range( x.size ):
-            s[ i ] = s[ i ] + w[ k ] / ( x_interp[ i ] - x[ k ] )
-    for i in range( x_interp.size ):
-        s[ i ] = s[ i ] * L[ i ]
+    s = numpy.zeros(x_interp.shape)
+    for i in range(x_interp.size):
+        for k in range(x.size):
+            s[i] = s[i] + w[k] / (x_interp[i] - x[k])
+    for i in range(x_interp.size):
+        s[i] = s[i] * L[i]
 
     return s
 
-def runge( x ):
-
-    return 1.0 / ( 1.0 + 25.0 * x**2 )
+def runge(x):
+    return 1.0/(1.0 + 25.0 * x**2)
 
 
 #k = 5
